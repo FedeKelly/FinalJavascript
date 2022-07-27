@@ -6,6 +6,8 @@ const anchoFormato2250 = 2250
 const anchoFormato2400 = 2400
 const refileMinimoCorrugadora = 35
 const refileMaximoCorrugadora = 70  
+let anchoPlancha = 0
+let largoPlachan = 0
 
 // Fin de variables
 
@@ -45,7 +47,7 @@ let superficiePlancha = largoPlancha * anchoPlancha /1000000
 console.log("La Plancha definida es " + largoPlancha + " de largo x " + anchoPlancha + " de ancho de tipo  " + abiertaOCerrada)
 console.log ("La superficie de la plancha es " + superficiePlancha)
 
-const multiplicacionAncho = []
+/*const multiplicacionAncho = []
 for(let i = 1; (anchoPlancha * i) <= anchoFormato2400 ; i++){
     multiplicacionAncho.push(anchoPlancha * i)
     console.log(multiplicacionAncho);
@@ -134,7 +136,7 @@ if(filtroNombres.length === 0){
 } else {
     alert ("El flujo productivo probable es " + filtroNombres.join())
 }
-
+*/
 // FIN Camino con medidas INT onda C
 // INICIO Camino medidas CT onda C
 
@@ -148,7 +150,7 @@ let superficiePlancha = largoPlancha * anchoPlancha / 1000000
 console.log("La Plancha definida es " + largoPlancha + " de largo x " + anchoPlancha + " de ancho de tipo  " + abiertaOCerrada)
 console.log ("La superficie de la plancha es " + superficiePlancha)
 
-const multiplicacionAncho = []
+/*const multiplicacionAncho = []
 for(let i = 1; (anchoPlancha * i) <= anchoFormato2400 ; i++){
     multiplicacionAncho.push(anchoPlancha * i)
     console.log(multiplicacionAncho);
@@ -236,7 +238,7 @@ if(filtroNombres.length === 0){
     alert ("Tu caja no se puede fabricar")
 } else {
     alert ("El flujo productivo probable es " + filtroNombres.join())
-}
+}*/
 }
 
 // FIN Camino con medidas CT onda C
@@ -257,11 +259,11 @@ const aperturaCaja = arrayCajaEvaluada.map((el) => {
 
 }
 }
-)
+)*/
 
-console.log(aperturaCaja)*/
+console.log(aperturaCaja)
 
-} 
+}
 
 //Inicio ciclo cajas abiertas
 
@@ -281,6 +283,7 @@ let superficiePlancha = largoPlancha * anchoPlancha / 1000000
 console.log("La Plancha definida es " + largoPlancha + " de largo x " + anchoPlancha + " de ancho de tipo  " + abiertaOCerrada)
 console.log ("La superficie de la plancha es " + superficiePlancha)
 // Info solicitada al usuario
+}
 
 const multiplicacionAncho = []
 for(let i = 1; (anchoPlancha * i) <= anchoFormato2400 ; i++){
@@ -371,14 +374,14 @@ if(filtroNombres.length === 0){
 } else {
     alert ("El flujo productivo probable es " + filtroNombres.join())
 
-    let flujoProductivo = document.getElementsByTagName("ul")
-console.log(flujoProductivo)
+    //let flujoProductivo = document.getElementsByTagName("ul")
+//console.log(flujoProductivo)
 
-    for (const filtroNombre of filtroNombres){
-        let listaMaquinas = document.createElement("li")
-        listaMaquinas.innerText = filtroNombre
-        flujoProductivo.append(listaMaquinas)
-    }
+    //for (const filtroNombre of filtroNombres){
+   // //    let listaMaquinas = document.createElement("li")
+   //     listaMaquinas.innerText = `${filtroNombres}`
+   //     document.body.append(listaMaquinas)
+   // }
 }
 let roundedPill = document.getElementsByClassName("badge bg-primary rounded-pill")
 console.log(roundedPill[0].innerHTML)
@@ -386,5 +389,5 @@ console.log(roundedPill[1].innerHTML)
 roundedPill[0].innerText = largoPlancha + " X " + anchoPlancha
 roundedPill[1].innerText = superficiePlancha
 
-}
+
 // Fin de ciclo cajas abiertas
