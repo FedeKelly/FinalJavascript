@@ -6,77 +6,69 @@ const anchoFormato2250 = 2250
 const anchoFormato2400 = 2400
 const refileMinimoCorrugadora = 35
 const refileMaximoCorrugadora = 70  
-let anchoPlancha = null
-let largoPlachan = null
-
+let anchoPlancha = 500
+let largoPlancha = null
+let abiertaOCerrada = null
 
 // Fin de variables
 
+let checkCerrada = document.getElementById("inlineRadio1")
+checkCerrada.onclick = () => {
+abiertaOCerrada = document.getElementById("inlineRadio1").value
 
-let abiertaOCerrada = prompt("Caja Abierta o Cerrada?").toUpperCase()
-while(abiertaOCerrada != "ABIERTA" && abiertaOCerrada != "CERRADA"){
-    alert("Tipo de caja no definido")
-    abiertaOCerrada = prompt("Caja Abierta o Cerrada?").toUpperCase()
-}  
+let seleccionOndas = document.getElementById("onda")
+seleccionOndas.addEventListener("click", function(event){onda=(event.target.value)})
 
-// Ciclo cajas Cerradas
+let tipoMedidas = document.getElementById("tipoMedidas")
+tipoMedidas.addEventListener("click", function(event){tipoMedida=(event.target.value)})
 
-if(abiertaOCerrada ==="CERRADA"){
-function definicionCaja(tipoMedida, onda, largo, ancho, alto, superposicionSup, SuperposicionInf, gap){
-    this.tipoMedida = tipoMedida
-    this.onda = onda
-    this.largo = largo
-    this.ancho = ancho
-    this.alto = alto
-    this.superposicionSup = superposicionSup
-    this.SuperposicionInf = SuperposicionInf
-    this.gap = gap
+let largoCt = document.getElementById("largoCt")
+largoCt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoCt").value)})
+
+let anchoCt = document.getElementById("anchoCt")
+anchoCt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoCt").value)})
+
+let altoCt = document.getElementById("altoCt")
+altoCt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoCt").value)})
+
 }
-
-const cajaEvaluada = new definicionCaja(prompt("Decime Tipo de medida (INT, CT, EXT").toUpperCase(), prompt("Decime la onda (C o B)").toUpperCase(), parseInt(prompt("Decime el Largo en mm")), parseInt(prompt("Decime el ancho en mm")), parseInt(prompt("Decime el alto en mm")), parseInt(prompt("Decime los mm de superposición de aleta Superior")), parseInt(prompt("Decime los mm de superposición de aleta Inferior")), parseInt(prompt("Decime los mm de GAP")))
-
-console.log(cajaEvaluada)
-
-// INICIO Camino con medidas INT onda C
-if(cajaEvaluada.tipoMedida == "INT" && cajaEvaluada.onda === "C"){
-    const cajaNormalizada = new definicionCaja("CT", cajaEvaluada.onda, cajaEvaluada.largo+3, cajaEvaluada.ancho+3, cajaEvaluada.alto+6, cajaEvaluada.superposicionSup, cajaEvaluada.SuperposicionInf, cajaEvaluada.gap)
-console.log(cajaNormalizada)
-
-largoPlancha = cajaNormalizada.largo*2 + cajaNormalizada.ancho*2 + 35
-anchoPlancha = cajaNormalizada.ancho + cajaNormalizada.alto 
-
-// FIN Camino con medidas INT onda C
-
-// INICIO Camino medidas CT onda C
-
-} else{
-    const cajaNormalizada = new definicionCaja(cajaEvaluada.tipoMedida, cajaEvaluada.onda, cajaEvaluada.largo, cajaEvaluada.ancho, cajaEvaluada.alto, cajaEvaluada.superposicionSup, cajaEvaluada.SuperposicionInf, cajaEvaluada.gap)
-console.log(cajaNormalizada)
-
-largoPlancha = cajaNormalizada.largo*2 + cajaNormalizada.ancho*2 + 35
-anchoPlancha = cajaNormalizada.ancho + cajaNormalizada.alto 
-}
-
-// FIN Camino con medidas CT onda C
-
 // Fin de ciclo Cajas Cerradas
 
-}
-
 //Inicio ciclo cajas abiertas
+let checkAbierta = document.getElementById("inlineRadio2")
+checkAbierta.onclick = () => {
+abiertaOCerrada = document.getElementById("inlineRadio2").value
 
-else{
-largoPlancha = parseInt(prompt("Decime el Largo de Plancha en mm"))
-while(largoPlancha > largoMaximoPlanchaCorrugar){
+let largoAbierta = document.getElementById("largoAbierta")
+largoAbierta.addEventListener("change", () => {largoPlancha = parseInt(document.getElementById("largoAbierta").value)})
+if(largoPlancha > largoMaximoPlanchaCorrugar){
     alert("Largo de plancha es mayor al máximo")
-    largoPlancha = parseInt(prompt("Decime El Largo de plancha en mm"))
 }
-anchoPlancha = parseInt(prompt("Decime El Ancho de plancha en mm"))
-while(anchoPlancha < anchoMinimoPlanchaCorrugar){
+let anchoAbierta = document.getElementById("anchoAbierta")
+anchoAbierta.addEventListener("change", () => {anchoPlancha = parseInt(document.getElementById("anchoAbierta").value)})
+if(anchoPlancha < anchoMinimoPlanchaCorrugar){
     alert("Ancho de plancha menor al mínimo")
-    anchoPlancha = parseInt(prompt("Decime El Ancho de plancha en mm"))
 }  
 }
+
+//Funciones botones
+let ejecutar = document.getElementById("ejecutar")
+ejecutar.onclick = () => {
+if(abiertaOCerrada === "CERRADA"){
+    function definicionCaja(onda, largo, ancho, alto){
+        this.onda = onda
+        this.largo = largo
+        this.ancho = ancho
+        this.alto = alto
+    }
+    const cajaEvaluada = new definicionCaja(onda, largo, ancho, alto)
+
+    console.log(cajaEvaluada)
+    
+    largoPlancha = cajaEvaluada.largo*2 + cajaEvaluada.ancho*2 + 35
+    anchoPlancha = cajaEvaluada.ancho + cajaEvaluada.alto 
+}
+
 let superficiePlancha = largoPlancha * anchoPlancha / 1000000
 console.log("La Plancha definida es " + largoPlancha + " de largo x " + anchoPlancha + " de ancho de tipo  " + abiertaOCerrada)
 console.log ("La superficie de la plancha es " + superficiePlancha)
@@ -187,6 +179,6 @@ console.log(roundedPill[0].innerHTML)
 console.log(roundedPill[1].innerHTML)
 roundedPill[0].innerText = largoPlancha + " X " + anchoPlancha
 roundedPill[1].innerText = superficiePlancha
-
+}
 
 // Fin de ciclo cajas abiertas

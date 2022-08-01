@@ -17,9 +17,72 @@
       </a>
     </div>
   </nav>
+  <!-- Check box-->
 <div class="w-95 p-3">
-    <h1 class="w-75 p-3 mb-2 bg-info text-dark">Bienvenido al Sistema de Desarrollo de Cajas</h1>
-    <h2 class="w-75 p-3 mb-2 bg-secondary text-white">La información que necesitás es:</h2>
+    <h1 class="w-75 p-2 mb-2 bg-info text-dark">Bienvenido al Sistema de Desarrollo de Cajas</h1>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="CERRADA">
+      <label class="form-check-label" for="inlineRadio1">Caja Cerrada</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="ABIERTA">
+      <label class="form-check-label" for="inlineRadio2">Caja Abierta</label>
+    </div>
+    <select class="form-select w-auto" id="onda" aria-label="Default select example">
+      <option selected>Definición de Ondas</option>
+      <option value="C">C</option>
+      <option value="B">B</option>
+      <option value="E">E</option>
+    </select>
+    <select class="form-select w-auto" id="tipoMedidas" aria-label="Default select example">
+      <option selected>Tipo de Medidas</option>
+      <option value="CT">Centro de Traza</option>
+      <option value="INT">Internas</option>
+      <option value="EXT">Externas</option>
+    </select>
+    <!--Formulario-->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Medidas</th>
+          <th scope="col">Internas</th>
+          <th scope="col">Centro de Traza</th>
+          <th scope="col">Externas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Largo</th>
+          <td><textarea class="form-control" aria-label="With textarea" id="largoInt" disabled></textarea></td>
+          <td><textarea class="form-control" aria-label="With textarea" id="largoCt"></textarea></td>
+          <td><textarea class="form-control" aria-label="With textarea" id="largoExt" disabled></textarea></td>
+        </tr>
+        <tr>
+          <th scope="row">Ancho</th>
+          <td><textarea class="form-control" aria-label="With textarea" id="anchoInt" disabled></textarea></td>
+          <td><textarea class="form-control" aria-label="With textarea" id="anchoCt"></textarea></td>
+          <td><textarea class="form-control" aria-label="With textarea" id="anchoExt" disabled></textarea></td>
+        </tr>
+        <tr>
+          <th scope="row">Alto</th>
+          <td><textarea class="form-control" aria-label="With textarea" id="altoInt" disabled></textarea></td>
+          <td><textarea class="form-control" aria-label="With textarea" id="altoCt"></textarea></td>
+          <td><textarea class="form-control" aria-label="With textarea" id="altoExt" disabled></textarea></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="input-group mb-2">
+      <span class="input-group-text">Largo total en mm</span>
+      <textarea class="form-control" aria-label="With textarea" id="largoAbierta"></textarea>
+      <span class="input-group-text">Ancho Total en mm</span>
+      <textarea class="form-control" aria-label="With textarea" id="anchoAbierta"></textarea>
+    </div>
+
+    <!--Botones-->
+    <button type="button" class="btn btn-primary btn-sm" id="ejecutar">Ejecutar</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="limpiar">Limpiar Formulario</button>
+    <!--Resultado-->
+    <h2 class="w-75 p-1 mb-2 mt-2 bg-secondary text-white">La información que necesitás es:</h2>
     <ul class="list-group w-50">
         <li class="list-group-item d-flex justify-content-between align-items-center">
           Medidas de Plancha
