@@ -15,11 +15,16 @@
         <img src="images/Logo Cartocor.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
         CARTOCOR
       </a>
+      <a href="lote.html"><button class="btn btn-sm btn-outline-secondary" type="button">Productos</button></a>
     </div>
-  </nav>
+</nav>
   <!-- Check box-->
-<div class="w-95 p-3">
+<main class="w-95 p-3">
     <h1 class="w-75 p-2 mb-2 bg-info text-dark">Bienvenido al Sistema de Desarrollo de Cajas</h1>
+    <div class="input-group mb-3 w-50">
+      <span class="input-group-text" id="basic-addon3">Nombre de la Caja: </span>
+      <input class="form-control" id="nombreCaja">
+    </div>
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="CERRADA">
       <label class="form-check-label" for="inlineRadio1">Caja Cerrada</label>
@@ -41,46 +46,15 @@
       <option value="EXT">Externas</option>
     </select>
     <!--Formulario-->
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Medidas</th>
-          <th scope="col">Internas</th>
-          <th scope="col">Centro de Traza</th>
-          <th scope="col">Externas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">Largo</th>
-          <td><textarea class="form-control" aria-label="With textarea" id="largoInt" disabled></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="largoCt"></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="largoExt" disabled></textarea></td>
-        </tr>
-        <tr>
-          <th scope="row">Ancho</th>
-          <td><textarea class="form-control" aria-label="With textarea" id="anchoInt" disabled></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="anchoCt"></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="anchoExt" disabled></textarea></td>
-        </tr>
-        <tr>
-          <th scope="row">Alto</th>
-          <td><textarea class="form-control" aria-label="With textarea" id="altoInt" disabled></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="altoCt"></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="altoExt" disabled></textarea></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="input-group mb-2">
-      <span class="input-group-text">Largo total en mm</span>
-      <textarea class="form-control" aria-label="With textarea" id="largoAbierta"></textarea>
-      <span class="input-group-text">Ancho Total en mm</span>
-      <textarea class="form-control" aria-label="With textarea" id="anchoAbierta"></textarea>
+    <div id="tablas">
     </div>
 
     <!--Botones-->
     <button type="button" class="btn btn-primary btn-sm" id="ejecutar">Ejecutar</button>
     <button type="button" class="btn btn-secondary btn-sm" id="limpiar">Limpiar Formulario</button>
+    <button type="button" class="btn btn-secondary btn-sm disabled" id="guardar">Guardar</button>
+</main>
+<div>    
     <!--Resultado-->
     <h2 class="w-75 p-1 mb-2 mt-2 bg-secondary text-white">La información que necesitás es:</h2>
     <ul class="list-group w-50">
