@@ -36,19 +36,19 @@ inputCerrada.innerHTML = `<table class="table">
   <tr>
     <th scope="row">Largo</th>
     <td><textarea class="form-control" aria-label="With textarea" id="largoInt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="largoCt"></textarea></td>
+    <td><textarea class="form-control" aria-label="With textarea" id="largoCt" disabled></textarea></td>
     <td><textarea class="form-control" aria-label="With textarea" id="largoExt" disabled></textarea></td>
   </tr>
   <tr>
     <th scope="row">Ancho</th>
     <td><textarea class="form-control" aria-label="With textarea" id="anchoInt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="anchoCt"></textarea></td>
+    <td><textarea class="form-control" aria-label="With textarea" id="anchoCt" disabled></textarea></td>
     <td><textarea class="form-control" aria-label="With textarea" id="anchoExt" disabled></textarea></td>
   </tr>
   <tr>
     <th scope="row">Alto</th>
     <td><textarea class="form-control" aria-label="With textarea" id="altoInt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="altoCt"></textarea></td>
+    <td><textarea class="form-control" aria-label="With textarea" id="altoCt" disabled></textarea></td>
     <td><textarea class="form-control" aria-label="With textarea" id="altoExt" disabled></textarea></td>
   </tr>
 </tbody>
@@ -199,20 +199,14 @@ if(abiertaOCerrada === "CERRADA"){
     
     largoPlancha = cajaEvaluada.largo*2 + cajaEvaluada.ancho*2 + 35
     anchoPlancha = cajaEvaluada.ancho + cajaEvaluada.alto
-
-    
 }
-
 let superficiePlancha = largoPlancha * anchoPlancha / 1000000
-console.log("La Plancha definida es " + largoPlancha + " de largo x " + anchoPlancha + " de ancho de tipo  " + abiertaOCerrada)
-console.log ("La superficie de la plancha es " + superficiePlancha)
 
 // Inicio evaluación de combinación
 
 const multiplicacionAncho = []
 for(let i = 1; (anchoPlancha * i) <= anchoFormato2400 ; i++){
     multiplicacionAncho.push(anchoPlancha * i)
-    console.log(multiplicacionAncho);
 }
 
 const definicionAutocombinacion = []
@@ -238,7 +232,6 @@ for(let i = 0; i < multiplicacionAncho.length; i++){
     }
     }
 
-console.log(definicionAutocombinacion)
 for (defAutocombinacion of definicionAutocombinacion){
     let mensajeCombinacion = document.getElementById("comb")
     mensajeCombinacion.innerHTML = `Tu caja autocombina en formato <strong>${definicionAutocombinacion}</strong>`
@@ -270,13 +263,6 @@ const maquinaDRO = new maquina ("Parana", "DRO", "ABIERTA", 1400, 400, 2200, 800
 maquinas.push(maquinaDRO)
 const maquinaWard3 = new maquina ("Parana", "Ward3","CERRADA", 1600, 500, 2650, 700)
 maquinas.push(maquinaWard3)
-
-
-console.log(maquinaWard1)
-console.log(maquinaNT)
-console.log(maquinaDRO)
-console.log(maquinaWard3)
-console.log(maquinas)
 
 const filtroAbiertaCerrada = maquinas.filter((el) => el.abiertaCerrada === abiertaOCerrada)
 console.log(filtroAbiertaCerrada)
@@ -321,18 +307,29 @@ roundedPill[1].innerText = superficiePlancha
 
 let guardar = document.getElementById("guardar")
 guardar.onclick = () => {
-let acumulador = (parseInt(localStorage.getItem("acumulador")) || 0) + 1
-console.log(acumulador)
-localStorage.setItem("titulo" + acumulador, titulo)
-localStorage.setItem("cajaEvaluada" + acumulador, JSON.stringify(cajaEvaluada || ""))
-localStorage.setItem("largoPlancha" + acumulador, largoPlancha)
-localStorage.setItem("anchoPlancha" + acumulador, anchoPlancha)
-localStorage.setItem("abiertaOCerrada" + acumulador, abiertaOCerrada)
-localStorage.setItem("definicionAutocombinacion" + acumulador, JSON.stringify(definicionAutocombinacion))
-localStorage.setItem("maquinas" + acumulador, JSON.stringify(filtroNombres))
-localStorage.setItem("ubicacion" + acumulador, JSON.stringify(filtroUbicacion))
-localStorage.setItem("onda" + acumulador, onda)
-botonGuardar.className = "btn btn-secondary btn-sm disabled"
-localStorage.setItem("acumulador", acumulador)
+const guardarTitulos =  (JSON.parse(localStorage.getItem("titulos"))) || []
+guardarTitulos.push(titulo)
+localStorage.setItem("titulos", JSON.stringify(guardarTitulos))
+
+localStorage.setItem("cajaEvaluada" + titulo, JSON.stringify(cajaEvaluada || ""))
+localStorage.setItem("largoPlancha" + titulo, largoPlancha)
+localStorage.setItem("anchoPlancha" + titulo, anchoPlancha)
+localStorage.setItem("abiertaOCerrada" + titulo, abiertaOCerrada)
+localStorage.setItem("definicionAutocombinacion" + titulo, JSON.stringify(definicionAutocombinacion))
+localStorage.setItem("maquinas" + titulo, JSON.stringify(filtroNombres))
+localStorage.setItem("ubicacion" + titulo, JSON.stringify(filtroUbicacion))
+localStorage.setItem("onda" + titulo, onda)
+  botonGuardar.className = "btn btn-secondary btn-sm disabled"
+Toastify({
+  text: "Producto Guardado",
+  duration: 1500,
+  newWindow: true,
+  close: true,
+  gravity: "top",
+  position: "right",
+  stopOnFocus: true,
+  style: {
+    background: "linear-gradient(to right, rgba(11,138,15,1) 0%, rgba(145,232,66,1) 100%);",
+  }}).showToast()
 }
 }
