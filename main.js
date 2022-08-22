@@ -16,7 +16,6 @@ let titulo
 // Fin de variables
 let nombreCaja = document.getElementById("nombreCaja")
 nombreCaja.addEventListener("change", () => {titulo = document.getElementById("nombreCaja").value})
-console.log(titulo)
 
 let checkCerrada = document.getElementById("inlineRadio1")
 checkCerrada.onclick = () => {
@@ -35,57 +34,63 @@ inputCerrada.innerHTML = `<table class="table">
 <tbody id="tabla">
   <tr>
     <th scope="row">Largo</th>
-    <td><textarea class="form-control" aria-label="With textarea" id="largoInt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="largoCt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="largoExt" disabled></textarea></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="largoInt" disabled></input></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="largoCt" disabled></input></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="largoExt" disabled></input></td>
   </tr>
   <tr>
     <th scope="row">Ancho</th>
-    <td><textarea class="form-control" aria-label="With textarea" id="anchoInt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="anchoCt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="anchoExt" disabled></textarea></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="anchoInt" disabled></input></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="anchoCt" disabled></input></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="anchoExt" disabled></input></td>
   </tr>
   <tr>
     <th scope="row">Alto</th>
-    <td><textarea class="form-control" aria-label="With textarea" id="altoInt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="altoCt" disabled></textarea></td>
-    <td><textarea class="form-control" aria-label="With textarea" id="altoExt" disabled></textarea></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="altoInt" disabled></input></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="altoCt" disabled></input></td>
+    <td><input type = text class="form-control" aria-label="With textarea" id="altoExt" disabled></input></td>
   </tr>
 </tbody>
 </table>`
 
+//Función Onda
 let seleccionOndas = document.getElementById("onda")
 seleccionOndas.addEventListener("click", function(event){onda=(event.target.value)})
 seleccionOndas.onclick = () => {
-console.log(onda)
-}
+  if (onda.length == 1 || onda.lenght == 2){
+    let habilitarMedidas = document.getElementById("tipoMedidas")
+    habilitarMedidas.innerHTML = `
+    <option selected>Tipo de Medidas</option>
+    <option value="CT">Centro de Traza</option>
+    <option value="INT">Internas</option>
+    <option value="EXT">Externas</option>`
+  }
+  }
 
 let tipoMedidas = document.getElementById("tipoMedidas")
 tipoMedidas.addEventListener("click", function(event){tipoMedida = (event.target.value)})
 
 tipoMedidas.onclick = () => {
-    console.log(tipoMedida)
-
 if(tipoMedida === "INT"){
     let ondaDisable = document.getElementById("tabla")
     ondaDisable.innerHTML = `<tbody id="tabla">
     <tr>
       <th scope="row">Largo</th>
-      <td><textarea class="form-control" aria-label="With textarea" id="largoInt"></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="largoCt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="largoExt" disabled></textarea></td>
+      <td id="datoLargoInt"><input type = text class="form-control" aria-label="With textarea" id="largoInt"></input></td>
+      <td id="datoLargoCt"><input type = text class="form-control" aria-label="With textarea" id="largoCt" disabled></input></td>
+      <td id="datoLargoExt"><input type = text class="form-control" aria-label="With textarea" id="largoExt" disabled></input></td>
     </tr>
     <tr>
       <th scope="row">Ancho</th>
-      <td><textarea class="form-control" aria-label="With textarea" id="anchoInt"></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="anchoCt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="anchoExt" disabled></textarea></td>
+      <td id="datoAnchoInt"><input type = text class="form-control" aria-label="With textarea" id="anchoInt"></input></td>
+      <td id="datoAnchoCt"><input type = text class="form-control" aria-label="With textarea" id="anchoCt" disabled></input></td>
+      <td id="datoAnchoExt"><input type = text class="form-control" aria-label="With textarea" id="anchoExt" disabled></input></td>
     </tr>
     <tr>
       <th scope="row">Alto</th>
-      <td><textarea class="form-control" aria-label="With textarea" id="altoInt"></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="altoCt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="altoExt" disabled></textarea></td>
+      <td id="datoAltoInt"><input type = text class="form-control" aria-label="With textarea" id="altoInt"></input></td>
+      <td id="datoAltoCt"><input type = text class="form-control" aria-label="With textarea" id="altoCt" disabled></input></td>
+      <td id="datoAltoExt"><input type = text class="form-control" aria-label="With textarea" id="altoExt" disabled></input></td>
     </tr>
   </tbody>`
 }
@@ -94,21 +99,21 @@ if(tipoMedida === "INT"){
     ondaDisable.innerHTML = `<tbody id="tabla">
     <tr>
       <th scope="row">Largo</th>
-      <td><textarea class="form-control" aria-label="With textarea" id="largoInt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="largoCt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="largoExt"></textarea></td>
+      <td id="datoLargoInt"><input type = text class="form-control" aria-label="With textarea" id="largoInt" disabled></input></td>
+      <td id="datoLargoCt"><input type = text class="form-control" aria-label="With textarea" id="largoCt" disabled></input></td>
+      <td id="datoLargoExt"><input type = text class="form-control" aria-label="With textarea" id="largoExt"></input></td>
     </tr>
     <tr>
       <th scope="row">Ancho</th>
-      <td><textarea class="form-control" aria-label="With textarea" id="anchoInt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="anchoCt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="anchoExt"></textarea></td>
+      <td id="datoAnchoInt"><input type = text class="form-control" aria-label="With textarea" id="anchoInt" disabled></input></td>
+      <td id="datoAnchoCt"><input type = text class="form-control" aria-label="With textarea" id="anchoCt" disabled></input></td>
+      <td id="datoAnchoExt"><input type = text class="form-control" aria-label="With textarea" id="anchoExt"></input></td>
     </tr>
     <tr>
       <th scope="row">Alto</th>
-      <td><textarea class="form-control" aria-label="With textarea" id="altoInt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="altoCt" disabled></textarea></td>
-      <td><textarea class="form-control" aria-label="With textarea" id="altoExt"></textarea></td>
+      <td id="datoAltoInt"><input type = text class="form-control" aria-label="With textarea" id="altoInt" disabled></input></td>
+      <td id="datoAltoCt"><input type = text class="form-control" aria-label="With textarea" id="altoCt" disabled></input></td>
+      <td id="datoAltoExt"><input type = text class="form-control" aria-label="With textarea" id="altoExt"></input></td>
     </tr>
   </tbody>`
 }
@@ -117,33 +122,93 @@ if(tipoMedida === "CT"){
         ondaDisable.innerHTML = `<tbody id="tabla">
         <tr>
           <th scope="row">Largo</th>
-          <td><textarea class="form-control" aria-label="With textarea" id="largoInt" disabled></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="largoCt"></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="largoExt" disabled></textarea></td>
+          <td id="datoLargoInt"><input type = text class="form-control" aria-label="With textarea" id="largoInt" disabled></input></td>
+          <td id="datoLargoCt"><input type = text class="form-control" aria-label="With textarea" id="largoCt"></input></td>
+          <td id="datoLargoExt"><input type = text class="form-control" aria-label="With textarea" id="largoExt" disabled></input></td>
         </tr>
         <tr>
           <th scope="row">Ancho</th>
-          <td><textarea class="form-control" aria-label="With textarea" id="anchoInt" disabled></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="anchoCt"></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="anchoExt" disabled></textarea></td>
+          <td id="datoAnchoInt"><input type = text class="form-control" aria-label="With textarea" id="anchoInt" disabled></input></td>
+          <td id="datoAnchoCt"><input type = text class="form-control" aria-label="With textarea" id="anchoCt"></input></td>
+          <td id="datoAnchoExt"><input type = text class="form-control" aria-label="With textarea" id="anchoExt" disabled></input></td>
         </tr>
         <tr>
           <th scope="row">Alto</th>
-          <td><textarea class="form-control" aria-label="With textarea" id="altoInt" disabled></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="altoCt"></textarea></td>
-          <td><textarea class="form-control" aria-label="With textarea" id="altoExt" disabled></textarea></td>
+          <td id="datoAltoInt"><input type = text class="form-control" aria-label="With textarea" id="altoInt" disabled></input></td>
+          <td id="datoAltoCt"><input type = text class="form-control" aria-label="With textarea" id="altoCt"></input></td>
+          <td id="datoAltoExt"><input type = text class="form-control" aria-label="With textarea" id="altoExt" disabled></input></td>
         </tr>
       </tbody>`
     }
 
+//Declaración de variables para modificar Formulario Medidas
 let largoCt = document.getElementById("largoCt")
-largoCt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoCt").value)})
-
+let largoInt = document.getElementById("largoInt")
+let largoExt = document.getElementById("largoExt")
 let anchoCt = document.getElementById("anchoCt")
-anchoCt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoCt").value)})
-
+let anchoInt = document.getElementById("anchoInt")
+let anchoExt = document.getElementById("anchoExt")
 let altoCt = document.getElementById("altoCt")
-altoCt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoCt").value)})
+let altoInt = document.getElementById("altoInt")
+let altoExt = document.getElementById("altoExt")
+let datoLargoInt = document.getElementById("datoLargoInt")
+let datoLargoCt = document.getElementById("datoLargoCt")
+let datoLargoExt = document.getElementById("datoLargoExt")
+let datoAnchoInt = document.getElementById("datoAnchoInt")
+let datoAnchoCt = document.getElementById("datoAnchoCt")
+let datoAnchoExt = document.getElementById("datoAnchoExt")
+let datoAltoCt = document.getElementById("datoAltoCt")
+let datoAltoInt = document.getElementById("datoAltoInt")
+let datoAltoExt = document.getElementById("datoAltoExt")
+
+// Ingreso de Datos CT
+largoCt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoCt").value)
+datoLargoInt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-3}" id="largoInt" disabled></input>`
+datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+3}" id="largoExt" disabled></input>`
+})
+
+anchoCt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoCt").value)
+datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-3}" id="anchoInt" disabled></input>`
+datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+3}" id="anchoExt" disabled></input>`
+})
+
+altoCt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoCt").value)
+datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-3}" id="altoInt" disabled></input>` 
+datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+3}" id="altoExt" disabled></input>`
+})
+
+//Ingreso de datos Int
+largoInt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoInt").value)
+datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+3}" id="largoCt" disabled></input>`
+datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+6}" id="largoExt" disabled></input>`
+})
+
+anchoInt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoInt").value)
+datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+3}" id="anchoCt" disabled></input>`
+datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+6}" id="anchoExt" disabled></input>`
+})
+
+altoInt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoInt").value)
+datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+3}" id="altoCt" disabled></input>` 
+datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+6}" id="altoExt" disabled></input>`
+})
+
+//Ingreso de datos Ext
+largoExt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoExt").value)
+datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-3}" id="largoCt" disabled></input>`
+datoLargoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-6}" id="largoInt" disabled></input>`
+})
+
+anchoExt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoExt").value)
+datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-3}" id="anchoCt" disabled></input>`
+datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-6}" id="anchoInt" disabled></input>`
+})
+
+altoExt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoExt").value)
+datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-3}" id="altoCt" disabled></input>` 
+datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-6}" id="altoInt" disabled></input>`
+})
+
 }
 }
 // Fin de ciclo Cajas Cerradas
@@ -155,16 +220,15 @@ abiertaOCerrada = document.getElementById("inlineRadio2").value
 
 let seleccionOndas = document.getElementById("onda")
 seleccionOndas.addEventListener("click", function(event){onda=(event.target.value)})
-seleccionOndas.onclick = () => {
-console.log(onda)
-}
 
 let inputAbierta = document.getElementById("tablas")
-inputAbierta.innerHTML = `<div class="input-group mb-2" id="inputAbierta">
+inputAbierta.innerHTML = `<div class="input-group mb-2 w-50" id="inputAbierta">
 <span class="input-group-text">Largo total en mm</span>
-<textarea class="form-control" aria-label="With textarea" id="largoAbierta"></textarea>
+<input class="form-control" aria-label="With textarea" id="largoAbierta"></input>
+</div>  
+<div class="input-group mb-2 w-50" id="inputAbierta">
 <span class="input-group-text">Ancho Total en mm</span>
-<textarea class="form-control" aria-label="With textarea" id="anchoAbierta"></textarea>
+<input class="form-control" aria-label="With textarea" id="anchoAbierta"></input>
 </div>`
 
 let largoAbierta = document.getElementById("largoAbierta")
@@ -232,16 +296,6 @@ for(let i = 0; i < multiplicacionAncho.length; i++){
     }
     }
 
-for (defAutocombinacion of definicionAutocombinacion){
-    let mensajeCombinacion = document.getElementById("comb")
-    mensajeCombinacion.innerHTML = `Tu caja autocombina en formato <strong>${definicionAutocombinacion}</strong>`
-}
-
-if(definicionAutocombinacion.length == 0){
-    let mensajeCombinacion = document.getElementById("comb")
-    mensajeCombinacion.innerText = "Tu caja NO autocombina"
-}
-
 // Definición de Objetos Máquinas
 
 function maquina(ubicacion, nombreMaquina, abiertaCerrada, anchoMaximo, anchoMinimo, largoMaximo, largoMinimo) {
@@ -286,14 +340,20 @@ const filtroUbicacion = filtroLargoMin.map((el) => el.ubicacion)
 console.log(filtroUbicacion)
 
 if(filtroNombres.length === 0){
-    let mensaje = document.createElement("div")
+    let mensaje = document.createElement("section")
     mensaje.innerHTML = "<h3>No existe flujo productivo posible</h3>"
     document.body.append(mensaje)
 } else {
     for (listaMaquinas of filtroLargoMin){
-        let mensaje = document.createElement("div")
-        mensaje.innerHTML = `<h2>Maquina posible ${listaMaquinas.nombreMaquina}</h2>
-                             <p>Ubicación: ${listaMaquinas.ubicacion}</p>`
+        let mensaje = document.createElement("section")
+        mensaje.innerHTML = `<div class="card d-inline-flex m-3" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">Caja: ${titulo}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Flujo Productivo: ${listaMaquinas.nombreMaquina}</h6>
+                                <p class="card-text">${(definicionAutocombinacion == ""? "Tu caja NO autocombina" : "Tu caja combina en: " + definicionAutocombinacion)}</p>
+                                <p class="card-text">Ubicación: ${listaMaquinas.ubicacion}</p>
+                              </div>
+                            </div>`
         document.body.append(mensaje)
     }
 }
@@ -333,3 +393,6 @@ Toastify({
   }}).showToast()
 }
 }
+
+let limpiarFormulario = document.getElementById("limpiar")
+limpiarFormulario.onclick = () => {location.reload()}
