@@ -12,6 +12,10 @@ let abiertaOCerrada = null
 let tipoMedida = null
 let cajaEvaluada
 let titulo
+let deltaLInt = 0
+let deltaLExt = 0
+let deltaAInt = 0
+let deltaAext = 0
 
 // Fin de variables
 let nombreCaja = document.getElementById("nombreCaja")
@@ -57,13 +61,49 @@ inputCerrada.innerHTML = `<table class="table">
 let seleccionOndas = document.getElementById("onda")
 seleccionOndas.addEventListener("click", function(event){onda=(event.target.value)})
 seleccionOndas.onclick = () => {
-  if (onda.length == 1 || onda.lenght == 2){
+  if ((onda.length == 1) || (onda.length == 2)){
     let habilitarMedidas = document.getElementById("tipoMedidas")
     habilitarMedidas.innerHTML = `
     <option selected>Tipo de Medidas</option>
     <option value="CT">Centro de Traza</option>
     <option value="INT">Internas</option>
     <option value="EXT">Externas</option>`
+  }
+  if(onda === "C"){
+    deltaLInt = 6
+    deltaLExt = 2
+    deltaAInt = 8
+    deltaAext = 2
+  }
+  if(onda === "B"){
+    deltaLInt = 4
+    deltaLExt = 2
+    deltaAInt = 6
+    deltaAext = 2
+  }
+  if(onda === "E"){
+    deltaLInt = 2
+    deltaLExt = 1
+    deltaAInt = 4
+    deltaAext = 1
+  }
+  if(onda === "BC"){
+    deltaLInt = 10
+    deltaLExt = 4
+    deltaAInt = 14
+    deltaAext = 4
+  }
+  if(onda === "EC"){
+    deltaLInt = 9
+    deltaLExt = 3
+    deltaAInt = 12
+    deltaAext = 3
+  }
+  if(onda === "EB"){
+    deltaLInt = 7
+    deltaLExt = 3
+    deltaAInt = 9
+    deltaAext = 3
   }
   }
 
@@ -163,50 +203,50 @@ let datoAltoExt = document.getElementById("datoAltoExt")
 
 // Ingreso de Datos CT
 largoCt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoCt").value)
-datoLargoInt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-3}" id="largoInt" disabled></input>`
-datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+3}" id="largoExt" disabled></input>`
+datoLargoInt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-deltaLInt}" id="largoInt" disabled></input>`
+datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLExt}" id="largoExt" disabled></input>`
 })
 
 anchoCt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoCt").value)
-datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-3}" id="anchoInt" disabled></input>`
-datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+3}" id="anchoExt" disabled></input>`
+datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-deltaLInt}" id="anchoInt" disabled></input>`
+datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLExt}" id="anchoExt" disabled></input>`
 })
 
 altoCt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoCt").value)
-datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-3}" id="altoInt" disabled></input>` 
-datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+3}" id="altoExt" disabled></input>`
+datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-deltaAInt}" id="altoInt" disabled></input>` 
+datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAext}" id="altoExt" disabled></input>`
 })
 
 //Ingreso de datos Int
 largoInt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoInt").value)
-datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+3}" id="largoCt" disabled></input>`
-datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+6}" id="largoExt" disabled></input>`
+datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLInt}" id="largoCt" disabled></input>`
+datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLExt+deltaLInt}" id="largoExt" disabled></input>`
 })
 
 anchoInt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoInt").value)
-datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+3}" id="anchoCt" disabled></input>`
-datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+6}" id="anchoExt" disabled></input>`
+datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLInt}" id="anchoCt" disabled></input>`
+datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLInt+deltaLExt}" id="anchoExt" disabled></input>`
 })
 
 altoInt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoInt").value)
-datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+3}" id="altoCt" disabled></input>` 
-datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+6}" id="altoExt" disabled></input>`
+datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAInt}" id="altoCt" disabled></input>` 
+datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAInt+deltaAext}" id="altoExt" disabled></input>`
 })
 
 //Ingreso de datos Ext
 largoExt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoExt").value)
-datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-3}" id="largoCt" disabled></input>`
-datoLargoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-6}" id="largoInt" disabled></input>`
+datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-deltaLExt}" id="largoCt" disabled></input>`
+datoLargoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-deltaLExt-deltaLInt}" id="largoInt" disabled></input>`
 })
 
 anchoExt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoExt").value)
-datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-3}" id="anchoCt" disabled></input>`
-datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-6}" id="anchoInt" disabled></input>`
+datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-deltaLExt}" id="anchoCt" disabled></input>`
+datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-deltaLExt-deltaLInt}" id="anchoInt" disabled></input>`
 })
 
 altoExt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoExt").value)
-datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-3}" id="altoCt" disabled></input>` 
-datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-6}" id="altoInt" disabled></input>`
+datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-deltaAext}" id="altoCt" disabled></input>` 
+datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-deltaAext-deltaAInt}" id="altoInt" disabled></input>`
 })
 
 }
