@@ -1,11 +1,12 @@
 let dolar 
+let acumulador = ""
 let campoDolar= document.getElementById("dolar")
 fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
 .then((response) => response.json())
 .then((data) => dolar = Number.parseFloat(data[0].casa.venta).toFixed(2))
 setTimeout(() =>{
 campoDolar.innerText = dolar
-},1000)
+},1500)
 
 let vaciarLote = document.getElementById("vaciar")
 vaciarLote.onclick = () => {
@@ -45,11 +46,7 @@ enviarInfo.onclick = () => {localStorage.clear()
     `
   })}
 
-
-  let dolaresPorTn = 0
-  let campoDolarPorTn = document.getElementById("dolaresPorTn")
-  campoDolarPorTn.addEventListener("change", () => {dolaresPorTn = parseInt(document.getElementById("dolaresPorTn").value)
-  const guardarTitulos = (JSON.parse(localStorage.getItem("titulos")) || [])
+const guardarTitulos = (JSON.parse(localStorage.getItem("titulos")) || [])
 
 for (const titulo of guardarTitulos){
 let numeradorAbiertaOCerrada = "abiertaOCerrada"+ titulo
@@ -84,52 +81,24 @@ const onda = localStorage.getItem(numeradorOnda)
 
 let numeradorCotizacion = "coti"+cardTitulo
 
-setTimeout(() => {
-const eventoFuturo = () => {
-  return new Promise ((resolve, reject) => {
-    if (dolar>0){
-    resolve(parseFloat(anchoPlancha * largoPlancha /1000000 *0.5* dolaresPorTn/ 1000*dolar).toFixed(2))}
-   else{
-    reject(cotizacion = "No Definida")}
-  })
-}
-eventoFuturo().then((response) => {
-  let cotizacion = response
-  console.log(cotizacion)
-  let campoCoti = document.getElementById(numeradorCotizacion)
-  campoCoti.innerText = "Cotización: $"+cotizacion
-})},1000)
-
-let cards = document.createElement("div")
-cards.innerHTML = `<div class="card d-inline-flex m-3" style="width: 18rem;">
+//let cards = document.createElement("div")
+//cards.innerHTML
+acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-3 m-5 rounded" style="width: 18rem;">
 <div class="card-body">
   <h5 class="card-title">Caja: ${cardTitulo}</h5>
   <h6 class="card-subtitle mb-2 text-muted">${abiertaCerrada}</h6>
   <p class="card-text">Largo ${largoPlancha} x Ancho ${anchoPlancha}</p>
   <p class="card-text">Onda: ${onda}</p>
-  <p class="card-text">Tu caja combina en: ${autocombinacion}</p>
+  <p class="card-text">Tu caja combina en: ${autocombinacion>0? ("Tu caja autocombina en: " + autocombinacion) : "NO autocombina"}</p>
   <p class="card-text">Máquinas sugeridas: ${maquinas.join(" o ")}</p>
   <p class="card-text">Ubicación correspondiente: ${ubicacion.join(" o ")}</p>
+  <input class="form-control mb-2 w-50" placeholder="U$D / Tn" aria-label="With textarea" id="USD${titulo}"></input>
   <h5 class="card-title" id="${numeradorCotizacion}">Cotización: 0</h5>
   </div>
   <div class="card-footer text-center">
     <a class="btn btn-primary m-3" id="eliminarCard${titulo}">Eliminar</a>
   </div>
 </div>`
-document.body.append(cards)
-let eliminarCard = document.getElementById("eliminarCard"+titulo)
-eliminarCard.onclick = () => {localStorage.removeItem("abiertaOCerrada"+titulo)
-localStorage.removeItem("largoPlancha"+titulo)
-localStorage.removeItem("anchoPlancha"+titulo)
-localStorage.removeItem("definicionAutocombinacion"+titulo)
-localStorage.removeItem("cajaEvaluada"+titulo)
-localStorage.removeItem("ubicacion"+titulo)
-localStorage.removeItem("onda"+titulo)
-localStorage.removeItem("maquinas"+titulo)
-let tituloABorrar = guardarTitulos.indexOf(titulo)
-guardarTitulos.splice(tituloABorrar, 1)
-localStorage.setItem("titulos", JSON.stringify(guardarTitulos))
-}
 } else{
     let numeradorLargoPlancha = "largoPlancha"+titulo
     let largoPlancha = localStorage.getItem(numeradorLargoPlancha)
@@ -158,53 +127,53 @@ localStorage.setItem("titulos", JSON.stringify(guardarTitulos))
 
     let numeradorCotizacion = "coti"+cardTitulo
 
-    setTimeout(() => {
-    const eventoFuturo = () => {
-      return new Promise ((resolve, reject) => {
-        if (dolar>0){
-        resolve(parseFloat(anchoPlancha * largoPlancha /1000000 *0.5* dolaresPorTn/ 1000*dolar).toFixed(2))}
-       else{
-        reject(cotizacion = "No Definida")}
-      })
-    }
-    eventoFuturo().then((response) => {
-      let cotizacion = response
-      console.log(cotizacion)
-      let campoCoti = document.getElementById(numeradorCotizacion)
-      campoCoti.innerText = "Cotización: $"+cotizacion
-    })},1000)
-
-    let cards = document.createElement("div")
-    cards.innerHTML = `<div class="card d-inline-flex m-3" style="width: 18rem;">
+    //let cards = document.createElement("div")
+    //cards.innerHTML 
+    acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-3 m-5 rounded" style="width: 18rem;">
       <div class="card-body">
       <h5 class="card-title">Caja: ${cardTitulo}</h5>
       <h6 class="card-subtitle mb-2 text-muted">${abiertaCerrada}</h6>
       <p class="card-text">Largo ${largoPlancha} x Ancho ${anchoPlancha}</p>
       <p class="card-text">Onda: ${onda}</p>
       <p class="card-text">Medidas CT: Largo ${cajaCerrada.largo} x Ancho ${cajaCerrada.ancho} x Alto ${cajaCerrada.alto}</p>
-      <p class="card-text">Tu caja combina en: ${autocombinacion}</p>
+      <p class="card-text">${autocombinacion>0? ("Tu caja autocombina en: " + autocombinacion) : "NO autocombina"}</p>
       <p class="card-text">Máquinas sugeridas: ${maquinas.join(" o ")}</p>
       <p class="card-text">Ubicación correspondiente: ${ubicacion.join(" o ")}</p>
+      <input class="form-control mb-2 w-50" placeholder="U$D / Tn" aria-label="With textarea" id="USD${titulo}"></input>
       <h5 class="card-title" id="${numeradorCotizacion}">Cotización: 0</h5>
       </div>
       <div class="card-footer text-center">
         <a class="btn btn-primary m-3" id="eliminarCard${titulo}">Eliminar</a>
       </div>
     </div>`
-    document.body.append(cards)
-    let eliminarCard = document.getElementById("eliminarCard"+titulo)
-    eliminarCard.onclick = () => {localStorage.removeItem("abiertaOCerrada"+titulo)
-      localStorage.removeItem("largoPlancha"+titulo)
-      localStorage.removeItem("anchoPlancha"+titulo)
-      localStorage.removeItem("definicionAutocombinacion"+titulo)
-      localStorage.removeItem("cajaEvaluada"+titulo)
-      localStorage.removeItem("ubicacion"+titulo)
-      localStorage.removeItem("onda"+titulo)
-      localStorage.removeItem("maquinas"+titulo)
-      let tituloABorrar = guardarTitulos.indexOf(titulo)
-      guardarTitulos.splice(tituloABorrar, 1)
-      localStorage.setItem("titulos", JSON.stringify(guardarTitulos))
-    }
 }
 }
+document.getElementById("seccion-card").innerHTML = acumulador
+
+for (const titulo of guardarTitulos){
+  let eliminarCard = document.getElementById("eliminarCard"+titulo)
+  eliminarCard.onclick = () => {localStorage.removeItem("abiertaOCerrada"+titulo)
+    localStorage.removeItem("largoPlancha"+titulo)
+    localStorage.removeItem("anchoPlancha"+titulo)
+    localStorage.removeItem("definicionAutocombinacion"+titulo)
+    localStorage.removeItem("cajaEvaluada"+titulo)
+    localStorage.removeItem("ubicacion"+titulo)
+    localStorage.removeItem("onda"+titulo)
+    localStorage.removeItem("maquinas"+titulo)
+    let tituloABorrar = guardarTitulos.indexOf(titulo)
+    guardarTitulos.splice(tituloABorrar, 1)
+    localStorage.setItem("titulos", JSON.stringify(guardarTitulos))
+  }
+  let USDValor
+  let campoUSD = document.getElementById("USD"+titulo)
+  campoUSD.addEventListener("change", () => {USDValor = parseInt(document.getElementById("USD"+titulo).value)
+    let numeradorLargoPlancha = "largoPlancha"+titulo
+    let largoPlancha = localStorage.getItem(numeradorLargoPlancha)
+    let numeradorAnchoPlancha = "anchoPlancha"+titulo
+    let anchoPlancha = localStorage.getItem(numeradorAnchoPlancha)
+    let cotizacion = largoPlancha * anchoPlancha /1000000 * 0.6 * USDValor/1000 * dolar
+document.getElementById("coti"+titulo).innerText = "Cotización: $ " + parseFloat(cotizacion).toFixed(2)
 })
+}
+
+
