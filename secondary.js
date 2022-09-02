@@ -83,17 +83,20 @@ let numeradorCotizacion = "coti"+cardTitulo
 
 //let cards = document.createElement("div")
 //cards.innerHTML
-acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-3 m-5 rounded" style="width: 18rem;">
-<div class="card-body">
-  <h5 class="card-title">Caja: ${cardTitulo}</h5>
-  <h6 class="card-subtitle mb-2 text-muted">${abiertaCerrada}</h6>
-  <p class="card-text">Largo ${largoPlancha} x Ancho ${anchoPlancha}</p>
-  <p class="card-text">Onda: ${onda}</p>
-  <p class="card-text">Tu caja combina en: ${autocombinacion>0? ("Tu caja autocombina en: " + autocombinacion) : "NO autocombina"}</p>
-  <p class="card-text">Máquinas sugeridas: ${maquinas.join(" o ")}</p>
-  <p class="card-text">Ubicación correspondiente: ${ubicacion.join(" o ")}</p>
-  <input class="form-control mb-2 w-50" placeholder="U$D / Tn" aria-label="With textarea" id="USD${titulo}"></input>
-  <h5 class="card-title" id="${numeradorCotizacion}">Cotización: 0</h5>
+acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-3 m-2 rounded" style="width: 25rem;">
+<div class="card-body w-auto">
+  <h4 class="card-title mb-4 text-center">Caja: ${cardTitulo}</h4>
+  <h6 class="card-subtitle mb-2 text-muted">TIPO: ${abiertaCerrada}</h6>
+  <p class="card-text"><strong>Plancha </strong>Largo ${largoPlancha} x Ancho ${anchoPlancha}</p>
+  <p class="card-text"><strong>Onda: </strong>${onda}</p>
+  <p class="card-text"><strong>Combinación: </strong>${autocombinacion>0? ("Tu caja autocombina en: " + autocombinacion) : "NO autocombina"}</p>
+  <p class="card-text"><strong>Máquinas sugeridas: </strong>${maquinas.join(" o ")}</p>
+  <p class="card-text"><strong>Ubicación correspondiente: </strong>${ubicacion.join(" o ")}</p>
+  <div class="row justify-content-around">
+  <input class="text-center form-control" style="width: 160px" placeholder="Indicar Cartón" aria-label="With textarea" id="carton${titulo}"></input>
+  <input class="text-center form-control" style="width: 160px" placeholder="U$D / Tn" aria-label="With textarea" id="USD${titulo}"></input>
+  </div>
+  <h5 class="card-title text-center mt-3" id="${numeradorCotizacion}">Cotización: $ 0</h5>
   </div>
   <div class="card-footer text-center">
     <a class="btn btn-primary m-3" id="eliminarCard${titulo}">Eliminar</a>
@@ -129,18 +132,21 @@ acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-
 
     //let cards = document.createElement("div")
     //cards.innerHTML 
-    acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-3 m-5 rounded" style="width: 18rem;">
-      <div class="card-body">
-      <h5 class="card-title">Caja: ${cardTitulo}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">${abiertaCerrada}</h6>
-      <p class="card-text">Largo ${largoPlancha} x Ancho ${anchoPlancha}</p>
-      <p class="card-text">Onda: ${onda}</p>
-      <p class="card-text">Medidas CT: Largo ${cajaCerrada.largo} x Ancho ${cajaCerrada.ancho} x Alto ${cajaCerrada.alto}</p>
-      <p class="card-text">${autocombinacion>0? ("Tu caja autocombina en: " + autocombinacion) : "NO autocombina"}</p>
-      <p class="card-text">Máquinas sugeridas: ${maquinas.join(" o ")}</p>
-      <p class="card-text">Ubicación correspondiente: ${ubicacion.join(" o ")}</p>
-      <input class="form-control mb-2 w-50" placeholder="U$D / Tn" aria-label="With textarea" id="USD${titulo}"></input>
-      <h5 class="card-title" id="${numeradorCotizacion}">Cotización: 0</h5>
+    acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-3 m-2 rounded" style="width: 25rem;">
+      <div class="card-body w-auto">
+      <h4 class="card-title mb-4 text-center">Caja: ${cardTitulo}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">TIPO: ${abiertaCerrada}</h6>
+      <p class="card-text"><strong>Plancha: </strong>Largo ${largoPlancha} x Ancho ${anchoPlancha}</p>
+      <p class="card-text"><strong>Onda: </strong>${onda}</p>
+      <p class="card-text"><strong>Medidas CT: </strong>Largo ${cajaCerrada.largo} x Ancho ${cajaCerrada.ancho} x Alto ${cajaCerrada.alto}</p>
+      <p class="card-text"><strong>Combinación: </strong>${autocombinacion>0? ("Tu caja autocombina en: " + autocombinacion) : "NO autocombina"}</p>
+      <p class="card-text"><strong>Máquinas sugeridas: </strong>${maquinas.join(" o ")}</p>
+      <p class="card-text"><strong>Ubicación correspondiente: </strong>${ubicacion.join(" o ")}</p>
+      <div class="row justify-content-around">
+      <input class="text-center form-control" style="width: 160px" placeholder="Indicar Cartón" aria-label="With textarea" id="carton${titulo}"></input>
+      <input class="text-center form-control" style="width: 160px" placeholder="U$D / Tn" aria-label="With textarea" id="USD${titulo}"></input>
+      </div>
+      <h5 class="card-title text-center mt-3" id="${numeradorCotizacion}">Cotización: $ 0</h5>
       </div>
       <div class="card-footer text-center">
         <a class="btn btn-primary m-3" id="eliminarCard${titulo}">Eliminar</a>
@@ -151,6 +157,7 @@ acumulador += `<div class="card d-inline-flex bg-info bg-opacity-50 shadow-lg p-
 document.getElementById("seccion-card").innerHTML = acumulador
 
 for (const titulo of guardarTitulos){
+  document.getElementById("USD"+titulo).disabled = true
   let eliminarCard = document.getElementById("eliminarCard"+titulo)
   eliminarCard.onclick = () => {localStorage.removeItem("abiertaOCerrada"+titulo)
     localStorage.removeItem("largoPlancha"+titulo)
@@ -164,6 +171,29 @@ for (const titulo of guardarTitulos){
     guardarTitulos.splice(tituloABorrar, 1)
     localStorage.setItem("titulos", JSON.stringify(guardarTitulos))
   }
+  let carton
+  let gramaje
+  let resultado
+  let campoCarton = document.getElementById("carton"+titulo)
+  campoCarton.addEventListener("change", () => {carton = ((document.getElementById("carton"+titulo).value).toUpperCase())
+  console.log(carton)
+    fetch("/datos.json")
+    .then((response) => response.json())
+    .then((cartones) => resultado = cartones.find((el) => el.codigo == carton))
+    if(resultado === undefined){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Cartón no encontrado',
+      })
+    }else{
+    setTimeout(() => {
+    console.log(resultado)
+    gramaje = resultado.gramaje
+    console.log(gramaje)},1500)
+    document.getElementById("USD"+titulo).disabled = false}
+  })
+  
   let USDValor
   let campoUSD = document.getElementById("USD"+titulo)
   campoUSD.addEventListener("change", () => {USDValor = parseInt(document.getElementById("USD"+titulo).value)
@@ -171,7 +201,7 @@ for (const titulo of guardarTitulos){
     let largoPlancha = localStorage.getItem(numeradorLargoPlancha)
     let numeradorAnchoPlancha = "anchoPlancha"+titulo
     let anchoPlancha = localStorage.getItem(numeradorAnchoPlancha)
-    let cotizacion = largoPlancha * anchoPlancha /1000000 * 0.6 * USDValor/1000 * dolar
+    let cotizacion = largoPlancha * anchoPlancha /1000000 * (gramaje/1000) * USDValor/1000 * dolar
 document.getElementById("coti"+titulo).innerText = "Cotización: $ " + parseFloat(cotizacion).toFixed(2)
 })
 }

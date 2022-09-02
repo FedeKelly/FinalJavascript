@@ -28,7 +28,7 @@ abiertaOCerrada = document.getElementById("inlineRadio1").value
 let inputCerrada = document.getElementById("tablas")
 inputCerrada.innerHTML = `<table class="table">
 <thead>
-  <tr>
+  <tr class="text-center">
     <th scope="col">Medidas</th>
     <th scope="col">Internas</th>
     <th scope="col">Centro de Traza</th>
@@ -380,18 +380,20 @@ const filtroUbicacion = filtroLargoMin.map((el) => el.ubicacion)
 console.log(filtroUbicacion)
 
 if(filtroNombres.length === 0){
-    let mensaje = document.createElement("section")
-    mensaje.innerHTML = "<h3>No existe flujo productivo posible</h3>"
-    document.body.append(mensaje)
+  Swal.fire({
+    icon: 'error',
+    title: 'No Existe Flujo Productivo Posible',
+    text: 'Contactar a Desarrollo',
+  })
 } else {
     for (listaMaquinas of filtroLargoMin){
         let mensaje = document.createElement("section")
-        mensaje.innerHTML = `<div class="card d-inline-flex m-3" style="width: 18rem;">
+        mensaje.innerHTML = `<div class="card d-inline-flex bg-info bg-opacity-25 shadow-lg p-1 mt-2 ms-5 mb-3 rounded" style="width: 25rem;">
                               <div class="card-body">
-                                <h5 class="card-title">Caja: ${titulo}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Flujo Productivo: ${listaMaquinas.nombreMaquina}</h6>
-                                <p class="card-text">${(definicionAutocombinacion == ""? "Tu caja NO autocombina" : "Tu caja combina en: " + definicionAutocombinacion)}</p>
-                                <p class="card-text">Ubicación: ${listaMaquinas.ubicacion}</p>
+                                <h5 class="card-title"><strong>Caja: </strong>${titulo}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><strong>Flujo Productivo: </strong>${listaMaquinas.nombreMaquina}</h6>
+                                <p class="card-text"><strong>Combinación: </strong>${(definicionAutocombinacion == ""? "Tu caja NO autocombina" : "Tu caja combina en: " + definicionAutocombinacion)}</p>
+                                <p class="card-text"><strong>Ubicación: </strong>${listaMaquinas.ubicacion}</p>
                               </div>
                             </div>`
         document.body.append(mensaje)
