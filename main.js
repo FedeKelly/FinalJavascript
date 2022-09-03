@@ -6,7 +6,7 @@ const anchoFormato2250 = 2250
 const anchoFormato2400 = 2400
 const refileMinimoCorrugadora = 35
 const refileMaximoCorrugadora = 70  
-let anchoPlancha = 500
+let anchoPlancha
 let largoPlancha = null
 let abiertaOCerrada = null
 let tipoMedida = null
@@ -16,10 +16,15 @@ let deltaLInt = 0
 let deltaLExt = 0
 let deltaAInt = 0
 let deltaAext = 0
-
+document.getElementById("ejecutar").disabled = true
 // Fin de variables
 let nombreCaja = document.getElementById("nombreCaja")
-nombreCaja.addEventListener("change", () => {titulo = document.getElementById("nombreCaja").value})
+nombreCaja.addEventListener("change", updateValue)
+
+function updateValue () {
+  titulo = document.getElementById("nombreCaja").value
+  document.getElementById("ejecutar").disabled = false
+  }
 
 let checkCerrada = document.getElementById("inlineRadio1")
 checkCerrada.onclick = () => {
@@ -204,50 +209,41 @@ let datoAltoExt = document.getElementById("datoAltoExt")
 // Ingreso de Datos CT
 largoCt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoCt").value)
 datoLargoInt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-deltaLInt}" id="largoInt" disabled></input>`
-datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLExt}" id="largoExt" disabled></input>`
-})
+datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLExt}" id="largoExt" disabled></input>`})
 
 anchoCt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoCt").value)
 datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-deltaLInt}" id="anchoInt" disabled></input>`
-datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLExt}" id="anchoExt" disabled></input>`
-})
+datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLExt}" id="anchoExt" disabled></input>`})
 
 altoCt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoCt").value)
 datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-deltaAInt}" id="altoInt" disabled></input>` 
-datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAext}" id="altoExt" disabled></input>`
-})
+datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAext}" id="altoExt" disabled></input>`})
 
 //Ingreso de datos Int
 largoInt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoInt").value)
 datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLInt}" id="largoCt" disabled></input>`
-datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLExt+deltaLInt}" id="largoExt" disabled></input>`
-})
+datoLargoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo+deltaLExt+deltaLInt}" id="largoExt" disabled></input>`})
 
 anchoInt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoInt").value)
 datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLInt}" id="anchoCt" disabled></input>`
-datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLInt+deltaLExt}" id="anchoExt" disabled></input>`
-})
+datoAnchoExt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho+deltaLInt+deltaLExt}" id="anchoExt" disabled></input>`})
 
 altoInt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoInt").value)
 datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAInt}" id="altoCt" disabled></input>` 
-datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAInt+deltaAext}" id="altoExt" disabled></input>`
-})
+datoAltoExt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto+deltaAInt+deltaAext}" id="altoExt" disabled></input>`})
 
 //Ingreso de datos Ext
 largoExt.addEventListener("change", () => {largo = parseInt(document.getElementById("largoExt").value)
 datoLargoCt.innerHTML=`<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-deltaLExt}" id="largoCt" disabled></input>`
-datoLargoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-deltaLExt-deltaLInt}" id="largoInt" disabled></input>`
-})
+datoLargoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${largo-deltaLExt-deltaLInt}" id="largoInt" disabled></input>`})
 
 anchoExt.addEventListener("change", () => {ancho = parseInt(document.getElementById("anchoExt").value)
 datoAnchoCt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-deltaLExt}" id="anchoCt" disabled></input>`
-datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-deltaLExt-deltaLInt}" id="anchoInt" disabled></input>`
-})
+datoAnchoInt.innerHTML = `<input type = text class="form-control" aria-label="With textarea" placeholder="${ancho-deltaLExt-deltaLInt}" id="anchoInt" disabled></input>`})
 
 altoExt.addEventListener("change", () => {alto = parseInt(document.getElementById("altoExt").value)
 datoAltoCt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-deltaAext}" id="altoCt" disabled></input>` 
-datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-deltaAext-deltaAInt}" id="altoInt" disabled></input>`
-})
+datoAltoInt.innerHTML =`<input type = text class="form-control" aria-label="With textarea" placeholder="${alto-deltaAext-deltaAInt}" id="altoInt" disabled></input>`})
 
 }
 }
@@ -273,23 +269,15 @@ inputAbierta.innerHTML = `<div class="input-group mb-2 w-50" id="inputAbierta">
 
 let largoAbierta = document.getElementById("largoAbierta")
 largoAbierta.addEventListener("change", () => {largoPlancha = parseInt(document.getElementById("largoAbierta").value)})
-if(largoPlancha > largoMaximoPlanchaCorrugar){
-    alert("Largo de plancha es mayor al máximo")
-}
+
 let anchoAbierta = document.getElementById("anchoAbierta")
-anchoAbierta.addEventListener("change", () => {anchoPlancha = parseInt(document.getElementById("anchoAbierta").value)})
-if(anchoPlancha < anchoMinimoPlanchaCorrugar){
-    alert("Ancho de plancha menor al mínimo")
-}  
+anchoAbierta.addEventListener("change", () => {anchoPlancha = parseInt(document.getElementById("anchoAbierta").value)}) 
 }
 
-//Funciones botones
+//Declaración Botones y función EJECUTAR
+let botonGuardar = document.getElementById("guardar")
 let ejecutar = document.getElementById("ejecutar")
 ejecutar.onclick = () => {
-  ejecutar.className = "btn btn-primary btn-sm disabled"
-  // Boton Guardar
-  let botonGuardar = document.getElementById("guardar")
-    botonGuardar.className = "btn btn-secondary btn-sm"
 
 if(abiertaOCerrada === "CERRADA"){
     function definicionCaja(largo, ancho, alto){
@@ -349,9 +337,9 @@ function maquina(ubicacion, nombreMaquina, abiertaCerrada, anchoMaximo, anchoMin
 }
 
 const maquinas = []
-const maquinaWard1 = new maquina("Parana", "Ward1","ABIERTA", 1600, 600, 2450, 1200);
+const maquinaWard1 = new maquina("Parana", "Ward1","ABIERTA", 1600, 300, 2450, 1200);
 maquinas.push (maquinaWard1)
-const maquinaNT = new maquina("Quilmes", "Martin NT", "CERRADA", 1500, 450, 2500, 600)
+const maquinaNT = new maquina("Quilmes", "Martin NT", "CERRADA", 1500, 250, 2500, 600)
 maquinas.push(maquinaNT)
 const maquinaDRO = new maquina ("Parana", "DRO", "ABIERTA", 1400, 400, 2200, 800)
 maquinas.push(maquinaDRO)
@@ -386,6 +374,10 @@ if(filtroNombres.length === 0){
     text: 'Contactar a Desarrollo',
   })
 } else {
+    ejecutar.className = "btn btn-primary btn-sm disabled"
+    
+    // Habilita Boton Guardar
+    botonGuardar.className = "btn btn-secondary btn-sm"
     for (listaMaquinas of filtroLargoMin){
         let mensaje = document.createElement("section")
         mensaje.innerHTML = `<div class="card d-inline-flex bg-info bg-opacity-25 shadow-lg p-1 mt-2 ms-5 mb-3 rounded" style="width: 25rem;">
@@ -421,7 +413,7 @@ localStorage.setItem("definicionAutocombinacion" + titulo, JSON.stringify(defini
 localStorage.setItem("maquinas" + titulo, JSON.stringify(filtroNombres))
 localStorage.setItem("ubicacion" + titulo, JSON.stringify(filtroUbicacion))
 localStorage.setItem("onda" + titulo, onda)
-  botonGuardar.className = "btn btn-secondary btn-sm disabled"
+botonGuardar.className = "btn btn-secondary btn-sm disabled"
 Toastify({
   text: "Producto Guardado",
   duration: 1500,

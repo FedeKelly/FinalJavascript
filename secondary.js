@@ -170,6 +170,17 @@ for (const titulo of guardarTitulos){
     let tituloABorrar = guardarTitulos.indexOf(titulo)
     guardarTitulos.splice(tituloABorrar, 1)
     localStorage.setItem("titulos", JSON.stringify(guardarTitulos))
+    Toastify({
+      text: "Producto Eliminado",
+      duration: 1500,
+      newWindow: true,
+      close: true,
+      gravity: "top",
+      position: "right",
+      stopOnFocus: true,
+      style: {
+        background: "linear-gradient(to right, rgba(11,138,15,1) 0%, rgba(145,232,66,1) 100%);",
+      }}).showToast()
   }
   let carton
   let gramaje
@@ -180,18 +191,19 @@ for (const titulo of guardarTitulos){
     fetch("/datos.json")
     .then((response) => response.json())
     .then((cartones) => resultado = cartones.find((el) => el.codigo == carton))
-    if(resultado === undefined){
+  setTimeout(() =>{
+      if(resultado === undefined){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Cartón no encontrado',
       })
     }else{
-    setTimeout(() => {
     console.log(resultado)
     gramaje = resultado.gramaje
-    console.log(gramaje)},1500)
+    console.log(gramaje)
     document.getElementById("USD"+titulo).disabled = false}
+  },300)
   })
   
   let USDValor
