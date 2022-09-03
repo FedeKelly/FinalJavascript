@@ -1,2 +1,2 @@
-Segundo desafío entregable
-Primer Pre-entrega de proyecto final
+Proyecto Final para el curso JAVASCRIP de Coderhouse
+Simulador de cotizador de cajas.
