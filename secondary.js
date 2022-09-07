@@ -188,7 +188,7 @@ for (const titulo of guardarTitulos){
   let campoCarton = document.getElementById("carton"+titulo)
   campoCarton.addEventListener("change", () => {carton = ((document.getElementById("carton"+titulo).value).toUpperCase())
   console.log(carton)
-    fetch("/datos.json")
+    fetch("https://fedekelly.github.io/datos/datos.json")
     .then((response) => response.json())
     .then((cartones) => resultado = cartones.find((el) => el.codigo == carton))
   setTimeout(() =>{
